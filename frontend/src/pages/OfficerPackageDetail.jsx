@@ -15,7 +15,6 @@ export default function OfficerPackageDetail() {
     const [saving, setSaving] = useState(false);
 
     const statusLabel = useMemo(() => {
-        // UI labels (you can change later)
         return {
             ARRIVED: "At Condo",
             PICKED_UP: "Picked Up",

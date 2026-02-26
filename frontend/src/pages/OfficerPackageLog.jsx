@@ -1,8 +1,3 @@
-/**
- * Officer package-log page.
- * Provides an activity feed of package status updates with filters and quick search.
- */
-
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api/client.js";
