@@ -1,7 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import ProtectedRoute from "./auth/ProtectedRoute.jsx";
 import { useAuth } from "./auth/AuthContext.jsx";
+import ProtectedRoute from "./auth/ProtectedRoute.jsx";
+import Login from "./pages/Login.jsx";
+import OfficerDashboard from "./pages/OfficerDashboard.jsx";
+import OfficerAddPackage from "./pages/OfficerAddPackage.jsx";
+import OfficerPackageDetail from "./pages/OfficerPackageDetail.jsx";
+import OfficerPackageLog from "./pages/OfficerPackageLog.jsx";
 
 function HomeRedirect() {
   const { role } = useAuth();
@@ -11,14 +15,11 @@ function HomeRedirect() {
   return <Navigate to="/login" replace />;
 }
 
-function RoleHome({ title }) {
-  const { displayName, logout } = useAuth();
+function Placeholder({ title }) {
   return (
     <div style={{ maxWidth: 720, margin: "48px auto", padding: 24 }}>
       <h1>{title}</h1>
-      <p>Welcome, {displayName || "User"}.</p>
-      <p>Day 1 module complete: authentication and role-based protected routes are working.</p>
-      <button onClick={logout}>Logout</button>
+      <p>This role module is scheduled for a later day.</p>
     </div>
   );
 }
@@ -33,15 +34,40 @@ export default function App() {
         path="/officer"
         element={
           <ProtectedRoute allowRoles={["OFFICER", "ADMIN"]}>
-            <RoleHome title="Officer Home" />
+            <OfficerDashboard />
           </ProtectedRoute>
         }
       />
       <Route
+        path="/officer/add"
+        element={
+          <ProtectedRoute allowRoles={["OFFICER", "ADMIN"]}>
+            <OfficerAddPackage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/officer/packages/:id"
+        element={
+          <ProtectedRoute allowRoles={["OFFICER", "ADMIN"]}>
+            <OfficerPackageDetail />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/officer/log"
+        element={
+          <ProtectedRoute allowRoles={["OFFICER", "ADMIN"]}>
+            <OfficerPackageLog />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
         path="/tenant"
         element={
           <ProtectedRoute allowRoles={["TENANT"]}>
-            <RoleHome title="Tenant Home" />
+            <Placeholder title="Tenant Module Pending" />
           </ProtectedRoute>
         }
       />
@@ -49,7 +75,7 @@ export default function App() {
         path="/admin"
         element={
           <ProtectedRoute allowRoles={["ADMIN"]}>
-            <RoleHome title="Admin Home" />
+            <Placeholder title="Admin Module Pending" />
           </ProtectedRoute>
         }
       />
