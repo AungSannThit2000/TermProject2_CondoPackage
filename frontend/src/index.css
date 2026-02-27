@@ -1,68 +1,612 @@
+/*
+ * Main application stylesheet.
+ * Contains shared dashboard/table/form styles used by login, officer, tenant, and admin pages.
+ */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+* { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+body { margin: 0; }
+
+.bg {
   min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 80% 20%, rgba(170, 120, 255, 0.35), transparent 45%),
+              radial-gradient(circle at 20% 10%, rgba(120, 190, 255, 0.28), transparent 45%),
+              #f6f7fb;
+  padding: 24px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.card {
+  width: 420px;
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #5b4bff, #8a2eff);
+  color: white;
+  margin: 0 auto 16px;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+.subtitle {
+  margin: 8px 0 20px;
+  text-align: center;
+  color: #5b6270;
+  font-size: 14px;
+}
+
+.form { display: grid; gap: 10px; }
+
+.label {
+  font-size: 13px;
+  color: #3c4350;
+  margin-top: 6px;
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e5e7ef;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.icon { opacity: 0.7; }
+
+.input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  font-size: 14px;
+}
+
+.row {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #3c4350;
+}
+
+.linkBtn {
+  border: 0;
+  background: transparent;
+  color: #5b4bff;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-size: 13px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.error {
+  background: #fff2f2;
+  border: 1px solid #ffd2d2;
+  color: #b00020;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.btn {
+  margin-top: 8px;
+  border: 0;
+  width: 100%;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, #5b4bff, #8a2eff);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ===== DASHBOARD LAYOUT ===== */
+.dash {
+  min-height: 100vh;
+  display: flex;
+  background: #f6f7fb;
+}
+
+.dashSide {
+  width: 280px;
+  background: #fff;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashSideHeader {
+  padding: 22px 18px;
+  border-bottom: 1px solid #eee;
+}
+
+.dashSideTitle {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.dashSideSub {
+  color: #6b7280;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.dashNavLabel {
+  padding: 18px 18px 10px;
+  font-size: 12px;
+  color: #9aa1ad;
+  letter-spacing: 0.08em;
+}
+
+.dashNav {
+  padding: 0 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.dashNavItem {
+  border: 1px solid #eee;
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.dashNavItem.active {
+  border: 0;
+  color: white;
+  background: linear-gradient(135deg, #5b4bff, #8a2eff);
+}
+
+.dashNavIcon { opacity: 0.9; }
+
+.dashUser {
+  margin-top: auto;
+  padding: 18px;
+  border-top: 1px solid #eee;
+}
+
+.dashUserAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #efeaff;
+  margin-bottom: 10px;
+}
+
+.dashUserName { font-weight: 700; }
+.dashUserSub { color: #6b7280; font-size: 13px; margin-top: 2px; }
+.dashUserRole { color: #9aa1ad; font-size: 12px; margin-top: 8px; }
+
+.dashLogout {
+  margin-top: 14px;
+  width: 100%;
+  border: 1px solid #eee;
+  background: #fff;
+  border-radius: 14px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.dashMain {
+  flex: 1;
+  padding: 26px;
+}
+
+.dashTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.dashTitle { margin: 0; }
+.dashSubtitle { color: #6b7280; margin-top: 6px; }
+
+.dashPill {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 999px;
+  padding: 10px 12px;
+  color: #374151;
+}
+
+/* Cards row */
+.cardsRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 18px 0 18px;
+}
+
+.cardBox {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.cardBoxTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #f2f4ff;
+}
+
+.cardLabel { color: #6b7280; font-size: 13px; margin-top: 6px; }
+.cardValue { font-size: 22px; font-weight: 800; margin-top: 4px; }
+
+/* Table box */
+.tableBox {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.tableHeader {
+  padding: 16px 18px;
+  font-weight: 700;
+  border-bottom: 1px solid #eee;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+  font-size: 14px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3b5bdb;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tableControls {
+  padding: 14px 18px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filterControl {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: #fff;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.searchBox {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 999px;
+  padding: 10px 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.searchBox input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  background: transparent;
+}
+
+.btnView {
+  border: none;
+  background: #111827;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btnView {
+  border: none;
+
+/* Modal + timeline for tenant logs */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.25);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modalCard {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
+  width: min(720px, 100%);
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid #f0f1f5;
+}
+
+.modalTitle {
+  font-weight: 700;
+  font-size: 18px;
+  color: #111827;
+}
+
+.modalSub {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.modalClose {
+  border: none;
+  background: #f3f4f6;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.modalClose:hover {
+  background: #e5e7eb;
+  transform: scale(1.02);
+}
+
+.timeline {
+  padding: 16px 20px 22px;
+  overflow-y: auto;
+  max-height: calc(80vh - 70px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.timelineEmpty {
+  text-align: center;
+  color: #6b7280;
+  padding: 24px;
+}
+
+.timelineItem {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.timelineDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #111827, #3b82f6);
+  margin-top: 6px;
+  box-shadow: 0 0 0 3px #e5e7eb;
+}
+
+.timelineBody {
+  background: #f9fafb;
+  border: 1px solid #f0f1f5;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+}
+
+.timelineTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.timelineTime {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.timelineNote {
+  font-size: 14px;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.timelineMeta {
+  font-size: 12px;
+  color: #6b7280;
+}
+  background: #111827;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+/* ===== PACKAGE DETAIL PAGE ===== */
+.detailCard {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  max-width: 920px;
+}
+
+.detailTitle {
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+  background: #f9fafb;
+  font-size: 14px;
+}
+
+.field select,
+.field textarea {
+  background: #fff;
+}
+
+.field.full {
+  margin-top: 14px;
+}
+
+.detailActions {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+}
+
+.btnPrimary {
+  border: none;
+  background: linear-gradient(135deg, #5b4bff, #8a2eff);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btnSecondary {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 10px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* ===== ADD PACKAGE FORM ===== */
+.formCard {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  max-width: 980px;
+}
+
+.formHeader {
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.formGrid .field.full {
+  grid-column: 1 / -1;
+}
+
+.formActions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
 }
