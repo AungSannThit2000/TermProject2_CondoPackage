@@ -6,6 +6,9 @@ import OfficerDashboard from "./pages/OfficerDashboard.jsx";
 import OfficerAddPackage from "./pages/OfficerAddPackage.jsx";
 import OfficerPackageDetail from "./pages/OfficerPackageDetail.jsx";
 import OfficerPackageLog from "./pages/OfficerPackageLog.jsx";
+import TenantDashboard from "./pages/TenantDashboard.jsx";
+import TenantPackages from "./pages/TenantPackages.jsx";
+import TenantProfile from "./pages/TenantProfile.jsx";
 
 function HomeRedirect() {
   const { role } = useAuth();
@@ -15,11 +18,11 @@ function HomeRedirect() {
   return <Navigate to="/login" replace />;
 }
 
-function Placeholder({ title }) {
+function AdminPlaceholder() {
   return (
     <div style={{ maxWidth: 720, margin: "48px auto", padding: 24 }}>
-      <h1>{title}</h1>
-      <p>This role module is scheduled for a later day.</p>
+      <h1>Admin Module Pending</h1>
+      <p>Admin module will be enabled on Day 4.</p>
     </div>
   );
 }
@@ -67,15 +70,32 @@ export default function App() {
         path="/tenant"
         element={
           <ProtectedRoute allowRoles={["TENANT"]}>
-            <Placeholder title="Tenant Module Pending" />
+            <TenantDashboard />
           </ProtectedRoute>
         }
       />
       <Route
+        path="/tenant/packages"
+        element={
+          <ProtectedRoute allowRoles={["TENANT"]}>
+            <TenantPackages />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/tenant/profile"
+        element={
+          <ProtectedRoute allowRoles={["TENANT"]}>
+            <TenantProfile />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
         path="/admin"
         element={
           <ProtectedRoute allowRoles={["ADMIN"]}>
-            <Placeholder title="Admin Module Pending" />
+            <AdminPlaceholder />
           </ProtectedRoute>
         }
       />
