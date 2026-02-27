@@ -1,0 +1,25 @@
+{
+  "name": "condopackage-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 4000",
+    "build": "next build",
+    "start": "next start -p 4000",
+    "lint": "next lint",
+    "seed:admin": "node scripts/seed-admin.mjs",
+    "seed:initial": "node --env-file=.env.local scripts/seed-initialdata.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.2",
+    "next": "^15.5.12",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.16.0",
+    "eslint-config-next": "^15.5.12"
+  }
+}
