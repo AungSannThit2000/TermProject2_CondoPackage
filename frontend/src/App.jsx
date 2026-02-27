@@ -16,6 +16,7 @@ import TenantProfile from "./pages/TenantProfile.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import AdminPackages from "./pages/AdminPackages.jsx";
 import AdminOfficers from "./pages/AdminOfficers.jsx";
+import AdminBuildings from "./pages/AdminBuildings.jsx";
 import AdminRooms from "./pages/AdminRooms.jsx";
 import AdminTenants from "./pages/AdminTenants.jsx";
 import AdminPackageLog from "./pages/AdminPackageLog.jsx";
@@ -117,6 +118,14 @@ export default function App() {
         element={
           <ProtectedRoute allowRoles={["ADMIN"]}>
             <AdminOfficers />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/buildings"
+        element={
+          <ProtectedRoute allowRoles={["ADMIN"]}>
+            <AdminBuildings />
           </ProtectedRoute>
         }
       />

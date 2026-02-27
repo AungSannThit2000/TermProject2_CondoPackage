@@ -8,9 +8,7 @@ export default function AdminRooms() {
     const [buildings, setBuildings] = useState([]);
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [bForm, setBForm] = useState({ building_code: "", building_name: "" });
     const [rForm, setRForm] = useState({ building_id: "", room_no: "", floor: "", status: "ACTIVE" });
-    const [showBuilding, setShowBuilding] = useState(false);
     const [showRoom, setShowRoom] = useState(false);
     const [editRoom, setEditRoom] = useState(null);
 
@@ -18,6 +16,7 @@ export default function AdminRooms() {
         { key: "dashboard", label: "Dashboard", icon: "▦", onClick: () => navigate("/admin") },
         { key: "packages", label: "Packages", icon: "📦", onClick: () => navigate("/admin/packages") },
         { key: "officers", label: "Officers", icon: "👥", onClick: () => navigate("/admin/officers") },
+        { key: "buildings", label: "Buildings", icon: "🏬", onClick: () => navigate("/admin/buildings") },
         { key: "rooms", label: "Rooms / Units", icon: "🏢", onClick: () => navigate("/admin/rooms") },
         { key: "tenants", label: "Tenants", icon: "🧑", onClick: () => navigate("/admin/tenants") },
         { key: "log", label: "Package Log", icon: "📝", onClick: () => navigate("/admin/log") },
@@ -36,18 +35,6 @@ export default function AdminRooms() {
             })
             .catch(() => alert("Failed to load rooms"))
             .finally(() => setLoading(false));
-    }
-
-    async function addBuilding(e) {
-        e.preventDefault();
-        try {
-            await api.post("/admin/buildings", bForm);
-            setBForm({ building_code: "", building_name: "" });
-            setShowBuilding(false);
-            loadData();
-        } catch {
-            alert("Failed to add building");
-        }
     }
 
     async function addRoom(e) {
@@ -140,14 +127,9 @@ export default function AdminRooms() {
             <div className="tableBox">
                 <div className="tableHeader" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <span>Rooms</span>
-                    <div style={{ display: "flex", gap: 10 }}>
-                        <button className="btnSecondary" onClick={() => setShowBuilding(true)} style={{ padding: "10px 12px" }}>
-                            + Add Building
-                        </button>
-                        <button className="btnPrimary" onClick={() => setShowRoom(true)} style={{ padding: "10px 12px" }}>
-                            + Add Room
-                        </button>
-                    </div>
+                    <button className="btnPrimary" onClick={() => setShowRoom(true)} style={{ padding: "10px 12px" }}>
+                        + Add Room
+                    </button>
                 </div>
                 <div style={{ maxHeight: "60vh", overflowY: "auto" }}>
                     <table className="table">
@@ -190,7 +172,7 @@ export default function AdminRooms() {
                 </div>
             </div>
 
-            {(showBuilding || showRoom || editRoom) && (
+            {(showRoom || editRoom) && (
                 <div
                     style={{
                         position: "fixed",
@@ -202,7 +184,6 @@ export default function AdminRooms() {
                         zIndex: 50,
                     }}
                     onClick={() => {
-                        setShowBuilding(false);
                         setShowRoom(false);
                         setEditRoom(null);
                     }}
@@ -218,53 +199,10 @@ export default function AdminRooms() {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="tableHeader" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                            <span>
-                                {showBuilding
-                                    ? "Add Building"
-                                    : showRoom
-                                        ? "Add Room"
-                                        : "Edit Room"}
-                            </span>
-                            <button className="btnSecondary" onClick={() => { setShowBuilding(false); setShowRoom(false); setEditRoom(null); }}>Close</button>
+                            <span>{showRoom ? "Add Room" : "Edit Room"}</span>
+                            <button className="btnSecondary" onClick={() => { setShowRoom(false); setEditRoom(null); }}>Close</button>
                         </div>
-                        {showBuilding ? (
-                            <form
-                                onSubmit={addBuilding}
-                                style={{
-                                    display: "grid",
-                                    gridTemplateColumns: "1fr 1fr",
-                                    gap: 16,
-                                    padding: 18,
-                                    background: "#fff",
-                                    borderRadius: 16,
-                                    border: "1px solid #e5e7eb",
-                                    margin: "0 12px 16px",
-                                }}
-                            >
-                                <div>
-                                    <label className="label">Building code</label>
-                                    <input
-                                        placeholder="e.g. A"
-                                        value={bForm.building_code}
-                                        onChange={(e) => setBForm((f) => ({ ...f, building_code: e.target.value }))}
-                                        style={{ padding: "10px 12px", borderRadius: 12, border: "1px solid #e5e7eb", background: "#f9fafb" }}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">Building name</label>
-                                    <input
-                                        placeholder="Building name"
-                                        value={bForm.building_name}
-                                        onChange={(e) => setBForm((f) => ({ ...f, building_name: e.target.value }))}
-                                        style={{ padding: "10px 12px", borderRadius: 12, border: "1px solid #e5e7eb", background: "#f9fafb" }}
-                                    />
-                                </div>
-                                <div style={{ display: "flex", gap: 10, alignItems: "flex-end" }}>
-                                    <button className="btnPrimary" type="submit">Add Building</button>
-                                    <button className="btnSecondary" type="button" onClick={() => setShowBuilding(false)}>Cancel</button>
-                                </div>
-                            </form>
-                        ) : showRoom ? (
+                        {showRoom ? (
                             <form
                                 onSubmit={addRoom}
                                 style={{

@@ -27,6 +27,7 @@ export default function AdminDashboard() {
         { key: "dashboard", label: "Dashboard", icon: "▦", onClick: () => navigate("/admin") },
         { key: "packages", label: "Packages", icon: "📦", onClick: () => navigate("/admin/packages") },
         { key: "officers", label: "Officers", icon: "👥", onClick: () => navigate("/admin/officers") },
+        { key: "buildings", label: "Buildings", icon: "🏬", onClick: () => navigate("/admin/buildings") },
         { key: "rooms", label: "Rooms / Units", icon: "🏢", onClick: () => navigate("/admin/rooms") },
         { key: "tenants", label: "Tenants", icon: "🧑", onClick: () => navigate("/admin/tenants") },
         { key: "log", label: "Package Log", icon: "📝", onClick: () => navigate("/admin/log") },
