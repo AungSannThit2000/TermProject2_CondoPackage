@@ -64,43 +64,89 @@ The system implements REST API CRUD operations for the following entities:
 
 ---
 
-## Login
+## 🖥️ System Interface
 
-![](frontend/src/images/Login_page.png)
+### 🔐 Authentication
+**Login Page**
+Centralized entry point for all user roles.
+![Login Page](frontend/src/images/Login_page.png)
 
-## Tenant
+---
 
-![](frontend/src/images/Tenant/Tenant_Dashboard.png)
+## 🏠 1. Tenant Experience
+The Tenant role provides residents with a personal dashboard to monitor deliveries and manage their condo contact details securely.
 
-![](frontend/src/images/Tenant/Tenant_Package_History.png)
+### 🔑 Key Features
+* **Live Dashboard:** View immediate statistics on packages waiting at the counter, total picked up this month, and any returned items.
+* **Detailed Package History:** Access a searchable log of all past deliveries, including tracking numbers, carrier information (e.g., DHL, FedEx), and specific arrival/pickup timestamps.
+* **Transparent Status Logs:** View specific audit trails for each package to see exactly when and by which officer a status was updated.
+* **Profile Management:** Maintain up-to-date contact information, including phone number and email, linked directly to their building and unit.
 
-![](frontend/src/images/Tenant//Tenant_Profile.png)
+### 📸 Tenant Interface
 
-## Officer
+**Dashboard & Latest Arrivals**
+Check real-time delivery status and arrival times at a glance.
+![Tenant Dashboard](frontend/src/images/Tenant/Tenant_Dashboard.png)
 
-![](frontend/src/images/Officer/Officer_Dashboard.png)
+**Package History & Audit Logs**
+Browse the full history of received packages and view detailed status logs for each item.
+![Tenant Package History](frontend/src/images/Tenant/Tenant_Package_History.png)
 
-![](frontend/src/images/Officer/Tenant_Package_History.png)
+**Personal Profile**
+Manage resident contact details and view assigned building/room information.
+![Tenant Profile](frontend/src/images/Tenant/Tenant_Profile.png)
+---
 
-![](frontend/src/images/Officer/Officer_RegisterNewPackage.png)
+## 👮 2. Officer Operations
+The Officer role is the core of the condominium’s daily logistics, providing the juristic staff with tools to manage the high volume of incoming parcels and resident pickups efficiently.
 
-## Admin
+### 🔑 Key Features
+* **Operational Dashboard:** Real-time tracking of packages currently at the condo, items picked up today, and a monthly tally of returned parcels.
+* **Streamlined Registration:** A dedicated interface to log new arrivals, including tracking numbers, courier selection, unit assignment, and custom officer notes (e.g., "Fragile" or "Perishable").
+* **Comprehensive Activity Log:** A master view of every package update across the entire condo, searchable by status, date, or unit number.
+* **Audit Transparency:** Every status change is timestamped and tagged with the specific officer who performed the update to ensure accountability.
 
-![](frontend/src/images/Admin/Admin_Dashboard.png)
+### 📸 Officer Interface
+**Officer Dashboard**
+Manage the daily workflow with quick-stat cards and a searchable list of current packages.
+![Officer Dashboard](frontend/src/images/Officer/Officer_Dashboard.png)
 
-![](frontend/src/images/Admin/Admin_Packages.png)
+**Register New Package**
+Log incoming deliveries quickly with automated timestamps and tenant linking.
+![Register New Package](frontend/src/images/Officer/Officer_RegisterNewPackage.png)
 
-![](frontend/src/images/Admin/Admin_Package_View.png)
+**Master Package Activity Log**
+Monitor all historical updates, returns, and pickups across the entire property.
+![Officer Package Log](frontend/src/images/Officer/Officer_PackageActivityLog.png)
 
-![](frontend/src/images/Admin/Admin_Officer.png)
+---
 
-![](frontend/src/images/Admin/Admin_Building.png)
+## ⚙️ 3. Administrator Panel
+The Admin role provides high-level oversight and management tools to maintain the building's infrastructure, user accounts, and package security.
 
-![](frontend/src/images/Admin/Admin_Room:Unit.png)
+### 🔑 Key Features
+* **System-Wide Dashboard:** Monitor live operational status, total active officers, tenant counts, and daily package movement statistics.
+* **User & Role Management:** Full administrative control to create, edit, or remove accounts for both Staff/Officers and Tenants.
+* **Infrastructure Configuration:** Manage building data and specific room/unit details, including floor levels and availability status.
+* **Master Package Records:** Access a global list of all packages in the system with the ability to view individual details or remove records.
+* **Full Audit Log:** A comprehensive, searchable log of every package status change ever made in the system, ensuring complete accountability.
 
-![](frontend/src/images/Admin/Admin_Tenant.png)
+### 📸 Administrator Interface
+**Admin Dashboard**
+A bird's-eye view of all system activity and operational status.
+![Admin Dashboard](frontend/src/images/Admin/Admin_Dashboard.png)
 
-![](frontend/src/images/Admin/Admin_PackageLog.png)
+**Infrastructure & User Management**
+Configure the physical layout of the condo and manage the accounts for residents and staff.
+![Admin Building Management](frontend/src/images/Admin/Admin_Building.png)
+![Admin Room Management](frontend/src/images/Admin/Admin_Room_Unit.png)
+![Admin Tenant Management](frontend/src/images/Admin/Admin_Tenant.png)
+![Admin Officer Management](frontend/src/images/Admin/Admin_Officer.png)
 
+**Package Governance & Detailed Audit**
+Review master lists and drill down into specific package records and historical status logs.
+![Admin Master Package List](frontend/src/images/Admin/Admin_Packages.png)
+![Admin Package Detail View](frontend/src/images/Admin/Admin_Package_View.png)
+![Admin Global Package Log](frontend/src/images/Admin/Admin_PackageLog.png)
 
-
+---
